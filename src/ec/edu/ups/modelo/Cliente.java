@@ -14,10 +14,9 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class Cliente {
-    
+    private String cedula;
     private String nombre;
     private String apellido;
-    private String cedula;
     private String correo;
     private String direccion;
     private String telefono;
@@ -30,7 +29,7 @@ public class Cliente {
         
     }
 
-    public Cliente(String nombre, String apellido, String cedula, String correo, String direccion, String telefono) {
+    public Cliente(String cedula, String nombre, String apellido, String correo, String direccion, String telefono) {
        
         this.setNombre(nombre);
         this.setApellido(apellido);

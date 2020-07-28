@@ -28,8 +28,8 @@ public class UsuarioDao implements IUsuarioDao {
      * con espacios, cortar a 25 caracteres+2 bytes extras private String
      * correo| 50 caracteres , Llenar con espacios, cortar a 50 caracteres +2
      * bytes extras private String contrasena| 8 caracteres Validar contraseña+2
-     * bytes extras 118 bytes mas 10 bytes por String = 128 bytes private
-     * listaTelefonos;
+     * bytes extras 
+     * 118 bytes mas 10 bytes por String = 128 bytes 
      *
      */
     private int tamanioRegistro ;

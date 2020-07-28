@@ -33,6 +33,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnIniciarSesion = new javax.swing.JMenuItem();
         btnCerrarSesion = new javax.swing.JMenuItem();
         btnRegistrarUsuario = new javax.swing.JMenuItem();
+        btnPerfil = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenuItem();
         btnAdministrar = new javax.swing.JMenu();
         btnBodegas = new javax.swing.JMenuItem();
@@ -63,6 +64,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnRegistrarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         btnRegistrarUsuario.setText("Registrar Usuario");
         btnMenu.add(btnRegistrarUsuario);
+
+        btnPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
+        btnMenu.add(btnPerfil);
 
         btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         btnSalir.setText("Salir");
@@ -140,6 +150,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClientesActionPerformed
 
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -185,6 +199,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnFacturas;
     private javax.swing.JMenuItem btnIniciarSesion;
     private javax.swing.JMenu btnMenu;
+    private javax.swing.JMenuItem btnPerfil;
     private javax.swing.JMenuItem btnPorBodega;
     private javax.swing.JMenuItem btnProductos;
     private javax.swing.JMenuItem btnRegistrarUsuario;
