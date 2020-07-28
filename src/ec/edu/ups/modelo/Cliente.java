@@ -23,7 +23,7 @@ public class Cliente {
     
    //Atributos de relacion
     
-    private List <Factura> facturas;
+    private Factura factura;
 
     public Cliente() {
         
@@ -37,7 +37,7 @@ public class Cliente {
         this.setCorreo(correo);
         this.setDireccion(direccion);
         this.setTelefono(telefono);
-        this.facturas= new ArrayList<>();
+     
         
     }
 
@@ -88,13 +88,7 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = validarEspacios(telefono,25);
     }
-   public void agregarFactura(Factura factura){
-    facturas.add(factura);
-    }
-
-    public List<Factura> getFacturas() {
-        return facturas;
-    }
+ 
    public String validarEspacios(String cadena, int n) {
         if (cadena.length() == n) {
             return cadena;
@@ -108,6 +102,14 @@ public class Cliente {
 
     }
 
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+    
     public String cortarEspacios(String cadena, int n) {
         return cadena.substring(0, n);
 
