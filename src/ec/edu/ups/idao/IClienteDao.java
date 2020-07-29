@@ -8,13 +8,12 @@ package ec.edu.ups.idao;
 import ec.edu.ups.modelo.Cliente;
 import java.util.List;
 
-
 /**
  *
  * @author Usuario
  */
 public interface IClienteDao {
-    
+
     public void create(Cliente cliente);
 
     public Cliente read(String cedula);
@@ -24,5 +23,5 @@ public interface IClienteDao {
     public void delete(Cliente cliente);
 
     public List<Cliente> listarTodosClientes();
-    
+
 }

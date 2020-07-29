@@ -10,22 +10,23 @@ package ec.edu.ups.modelo;
  * @author paul_
  */
 public class Detalle {
+
     private int codigo;
     private int cantidad;
     private double total;
-    
+
     //Atributos de Relacion
-   private Producto producto;
-   private Factura factura;
+    private Producto producto;
+    private Factura factura;
 
     public Detalle() {
     }
-    
-    public Detalle(int codigo ,int cantidad, double total) {
-        this.codigo=codigo;
+
+    public Detalle(int codigo, int cantidad, double total) {
+        this.codigo = codigo;
         this.cantidad = cantidad;
         this.total = total;
-     
+
     }
 
     public int getCodigo() {
@@ -35,7 +36,7 @@ public class Detalle {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+
     public int getCantidad() {
         return cantidad;
     }
@@ -67,7 +68,8 @@ public class Detalle {
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
-     public String validarEspacios(String cadena, int n) {
+
+    public String validarEspacios(String cadena, int n) {
         if (cadena.length() == n) {
             return cadena;
         } else {
@@ -114,10 +116,10 @@ public class Detalle {
         }
         return true;
     }
-    
-    public double obtenerSubtotal(){
+
+    public double obtenerTotal() {
         return 0;
-        
+
     }
-    
+
 }

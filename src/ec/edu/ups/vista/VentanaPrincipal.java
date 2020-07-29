@@ -29,56 +29,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        btnMenu = new javax.swing.JMenu();
-        btnIniciarSesion = new javax.swing.JMenuItem();
-        btnCerrarSesion = new javax.swing.JMenuItem();
-        btnRegistrarUsuario = new javax.swing.JMenuItem();
-        btnPerfil = new javax.swing.JMenuItem();
-        btnSalir = new javax.swing.JMenuItem();
         btnAdministrar = new javax.swing.JMenu();
         btnBodegas = new javax.swing.JMenuItem();
         btnProductos = new javax.swing.JMenuItem();
         btnClientes = new javax.swing.JMenuItem();
         btnFacturas = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         btnConsultar = new javax.swing.JMenu();
         btnPorBodega = new javax.swing.JMenuItem();
         btnDeDistribuidora = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnMenu.setText("Menu");
-
-        btnIniciarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        btnIniciarSesion.setText("Iniciar Sesión");
-        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarSesionActionPerformed(evt);
-            }
-        });
-        btnMenu.add(btnIniciarSesion);
-
-        btnCerrarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        btnCerrarSesion.setText("Cerrar Sesión");
-        btnMenu.add(btnCerrarSesion);
-
-        btnRegistrarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        btnRegistrarUsuario.setText("Registrar Usuario");
-        btnMenu.add(btnRegistrarUsuario);
-
-        btnPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        btnPerfil.setText("Perfil");
-        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPerfilActionPerformed(evt);
-            }
-        });
-        btnMenu.add(btnPerfil);
-
-        btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        btnSalir.setText("Salir");
-        btnMenu.add(btnSalir);
-
-        jMenuBar1.add(btnMenu);
 
         btnAdministrar.setText("Administrar");
 
@@ -107,6 +68,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnFacturas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         btnFacturas.setText("Facturas");
         btnAdministrar.add(btnFacturas);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Perfil");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        btnAdministrar.add(jMenuItem1);
 
         jMenuBar1.add(btnAdministrar);
 
@@ -138,10 +108,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIniciarSesionActionPerformed
-
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProductosActionPerformed
@@ -150,9 +116,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPerfilActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,19 +158,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu btnAdministrar;
     private javax.swing.JMenuItem btnBodegas;
-    private javax.swing.JMenuItem btnCerrarSesion;
     private javax.swing.JMenuItem btnClientes;
     private javax.swing.JMenu btnConsultar;
     private javax.swing.JMenuItem btnDeDistribuidora;
     private javax.swing.JMenuItem btnFacturas;
-    private javax.swing.JMenuItem btnIniciarSesion;
-    private javax.swing.JMenu btnMenu;
-    private javax.swing.JMenuItem btnPerfil;
     private javax.swing.JMenuItem btnPorBodega;
     private javax.swing.JMenuItem btnProductos;
-    private javax.swing.JMenuItem btnRegistrarUsuario;
-    private javax.swing.JMenuItem btnSalir;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

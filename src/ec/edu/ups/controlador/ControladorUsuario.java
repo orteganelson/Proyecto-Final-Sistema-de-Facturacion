@@ -14,20 +14,21 @@ import ec.edu.ups.modelo.Usuario;
  *
  * Esta clase manejara toda la informacion del usuario y ademas tendra acceso a
  * la lista de usuarios registrados que le pertenece a UsuarioDao, esto se debe
- * a que el cosntructor recibe al usuarioDao. 
- * 
+ * a que el cosntructor recibe al usuarioDao.
  *
- * @author 
+ *
+ * @author
  */
-
 public class ControladorUsuario {
+
     private Usuario usuario;
     private IUsuarioDao UsuarioDao;
 
     public ControladorUsuario(UsuarioDao usuarioDAO) {
-        this.UsuarioDao= UsuarioDao;
+        this.UsuarioDao = UsuarioDao;
     }
-     public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String pass) {
+
+    public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String pass) {
         usuario = new Usuario(cedula, nombre, apellido, correo, pass);
         UsuarioDao.create(usuario);
 

@@ -98,8 +98,6 @@ public class Usuario {
 
     }
 
-   
-
     @Override
     public int hashCode() {
         int hash = 7;

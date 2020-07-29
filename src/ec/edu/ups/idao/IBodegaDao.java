@@ -8,13 +8,12 @@ package ec.edu.ups.idao;
 import ec.edu.ups.modelo.Bodega;
 import java.util.List;
 
-
 /**
  *
  * @author paul_
  */
 public interface IBodegaDao {
-    
+
     public void create(Bodega bodega);
 
     public Bodega read(int codigo);
@@ -23,6 +22,8 @@ public interface IBodegaDao {
 
     public void delete(Bodega bodega);
 
-    public  List<Bodega> listarTodasBodegas();
-    
+    public int obtenerUltimoCodigo();
+
+    public List<Bodega> listarTodasBodegas();
+
 }

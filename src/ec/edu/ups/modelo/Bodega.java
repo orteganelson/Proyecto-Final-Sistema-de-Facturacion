@@ -13,19 +13,18 @@ import java.util.List;
  * @author Usuario
  */
 public class Bodega {
-    
+
     private int codigo;
     private String nombre;
     private String direccion;
     private String ciudad;
     private int cantidad;
-    
+
     //Atributos de relacion
-    
-    private List <Producto> productos ;
+    private List<Producto> productos;
 
     public Bodega() {
-        this.productos=new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public Bodega(int codigo, String nombre, String direccion, String ciudad, int cantidad) {
@@ -34,7 +33,7 @@ public class Bodega {
         this.setDireccion(direccion);
         this.setCiudad(ciudad);
         this.cantidad = cantidad;
-        this.productos=new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -50,7 +49,7 @@ public class Bodega {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = validarEspacios(nombre,25);
+        this.nombre = validarEspacios(nombre, 25);
     }
 
     public String getDireccion() {
@@ -58,7 +57,7 @@ public class Bodega {
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = validarEspacios(direccion,60);
+        this.direccion = validarEspacios(direccion, 60);
     }
 
     public String getCiudad() {
@@ -66,7 +65,7 @@ public class Bodega {
     }
 
     public void setCiudad(String ciudad) {
-        this.ciudad = validarEspacios(ciudad,25);
+        this.ciudad = validarEspacios(ciudad, 25);
     }
 
     public int getCantidad() {
@@ -76,14 +75,16 @@ public class Bodega {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    public void agregarProductos(Producto producto ){
-    this.productos.add(producto);
+
+    public void agregarProductos(Producto producto) {
+        this.productos.add(producto);
     }
 
     public List<Producto> getProductos() {
         return productos;
     }
-     public String validarEspacios(String cadena, int n) {
+
+    public String validarEspacios(String cadena, int n) {
         if (cadena.length() == n) {
             return cadena;
         } else {
@@ -105,8 +106,7 @@ public class Bodega {
         return String.format("%-" + n + "s", cadena);
 
     }
-   
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -136,5 +136,5 @@ public class Bodega {
     public String toString() {
         return "Bodega{" + "codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", ciudad=" + ciudad + ", cantidad=" + cantidad + '}';
     }
-    
+
 }

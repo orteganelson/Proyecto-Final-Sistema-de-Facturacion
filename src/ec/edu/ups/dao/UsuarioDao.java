@@ -11,11 +11,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.List;
 
-
-
 /**
  *
- * @author 
+ * @author
  */
 public class UsuarioDao implements IUsuarioDao {
 
@@ -28,15 +26,14 @@ public class UsuarioDao implements IUsuarioDao {
      * con espacios, cortar a 25 caracteres+2 bytes extras private String
      * correo| 50 caracteres , Llenar con espacios, cortar a 50 caracteres +2
      * bytes extras private String contrasena| 8 caracteres Validar contraseña+2
-     * bytes extras 
-     * 118 bytes mas 10 bytes por String = 128 bytes 
+     * bytes extras 118 bytes mas 10 bytes por String = 128 bytes
      *
      */
-    private int tamanioRegistro ;
+    private int tamanioRegistro;
     private RandomAccessFile archivo;
 
     public UsuarioDao() {
-           tamanioRegistro=128;
+        tamanioRegistro = 128;
         try {
             archivo = new RandomAccessFile("datos/usuarios.dat", "rw");
         } catch (IOException ex) {
@@ -62,18 +59,18 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public Usuario read(String cedula) {
-       int salto = 0;
+        int salto = 0;
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                     String cedulaA=archivo.readUTF().trim();
+                String cedulaA = archivo.readUTF().trim();
                 if (cedula.trim().equals(cedulaA)) {
                     // retornar el Usuario
-                     Usuario usuario = new Usuario(cedula.trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                    Usuario usuario = new Usuario(cedula.trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), archivo.readUTF().trim());
                     return usuario;
                 }
-                
+
                 salto += tamanioRegistro;
             }
 
@@ -81,18 +78,59 @@ public class UsuarioDao implements IUsuarioDao {
             System.out.println("Error de lectura y escritura read:TelefonoDao");
         }
         return null;
-      
 
     }
 
     @Override
     public void update(Usuario usuario) {
-
+        int salto = 0;
+        String cedula = usuario.getCedula();
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String cedulaArchivo = archivo.readUTF().trim();
+                if (cedula.trim().equals(cedulaArchivo)) {
+                    //archivo.writeUTF(cliente.getCedula());
+                    archivo.writeUTF(usuario.getNombre());
+                    archivo.writeUTF(usuario.getApellido());
+                    archivo.writeUTF(usuario.getCorreo());
+                    archivo.writeUTF(usuario.getContrasena());
+                    break;
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura o escritura(upDateUsuario)");
+        }
     }
 
     @Override
     public void delete(Usuario usuario) {
+        try {
+            String cedula = usuario.getCedula();
+            int salto = 0;
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String cedulaArchivo = archivo.readUTF();
+                if (cedula.trim().equals(cedulaArchivo.trim())) {
+                    archivo.writeUTF(llenarEspacios(10));
+                    archivo.writeUTF(llenarEspacios(25));
+                    archivo.writeUTF(llenarEspacios(25));
+                    archivo.writeUTF(llenarEspacios(50));
+                    archivo.writeUTF(llenarEspacios(8));
+                    break;
+                }
+                salto += tamanioRegistro;
+            }
 
+        } catch (IOException ex) {
+            System.out.println("Error delete usuario");
+        }
+    }
+
+    public String llenarEspacios(int espacios) {
+        String aux = "";
+        return String.format("%-" + espacios + "s", aux);
     }
 
     @Override
@@ -121,7 +159,7 @@ public class UsuarioDao implements IUsuarioDao {
     @Override
     public List< Usuario> listarTodosUsuarios() {
         return null;
-       
+
     }
 
 }

@@ -115,7 +115,6 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnINICIARSESION;
     private javax.swing.JPanel jPanel1;

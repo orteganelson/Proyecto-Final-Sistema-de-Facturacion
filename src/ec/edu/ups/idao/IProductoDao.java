@@ -13,7 +13,7 @@ import java.util.List;
  * @author paul_
  */
 public interface IProductoDao {
-    
+
     public void create(Producto producto);
 
     public Producto read(int codigo);
@@ -22,6 +22,10 @@ public interface IProductoDao {
 
     public void delete(Producto producto);
 
+    public int obtenerUltimoCodigo();
+
     public List<Producto> listarTodosProductos();
-    
+
+    public List<Producto> listarPorBodega(int codigo);
+
 }

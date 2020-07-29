@@ -10,5 +10,5 @@ package ec.edu.ups.controlador;
  * @author Usuario
  */
 public class ControladorCliente {
-    
+
 }

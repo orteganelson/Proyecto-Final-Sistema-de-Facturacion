@@ -10,25 +10,26 @@ package ec.edu.ups.modelo;
  * @author Usuario
  */
 public class Producto {
-    
-    private String nombre;
+
     private int codigo;
+    private String nombre;
+
     private double precio;
     private int cantidad;
     private String descripcion;
-    
+
     //Atributos de relacion
     private Bodega bodega;
 
     public Producto() {
     }
 
-    public Producto(String nombre, int codigo, double precio, int cantidad, String descripcion) {
-        this.nombre = nombre;
+    public Producto(int codigo, String nombre, double precio, int cantidad, String descripcion) {
+        this.setNombre(validarEspacios(nombre, 25));
         this.codigo = codigo;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.descripcion = descripcion;
+        this.setDescripcion(validarEspacios(descripcion, 80));;
     }
 
     public Bodega getBodega() {
@@ -44,7 +45,7 @@ public class Producto {
     }
 
     public void setNombre(String nombre) {
-        this.nombre =validarEspacios (nombre,25);
+        this.nombre = validarEspacios(nombre, 25);
     }
 
     public int getCodigo() {
@@ -76,9 +77,10 @@ public class Producto {
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = validarEspacios(descripcion,80);
+        this.descripcion = validarEspacios(descripcion, 80);
     }
-      public String validarEspacios(String cadena, int n) {
+
+    public String validarEspacios(String cadena, int n) {
         if (cadena.length() == n) {
             return cadena;
         } else {
@@ -100,9 +102,10 @@ public class Producto {
         return String.format("%-" + n + "s", cadena);
 
     }
+
     @Override
     public String toString() {
         return "Producto{" + "nombre=" + nombre + ", codigo=" + codigo + ", precio=" + precio + ", cantidad=" + cantidad + ", descripcion=" + descripcion + '}';
     }
-    
+
 }

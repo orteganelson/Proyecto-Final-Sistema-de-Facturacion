@@ -8,13 +8,12 @@ package ec.edu.ups.idao;
 import ec.edu.ups.modelo.Usuario;
 import java.util.List;
 
-
 /**
  *
  * @author paul_
  */
 public interface IUsuarioDao {
-    
+
     public void create(Usuario usuario);
 
     public Usuario read(String correo);
@@ -23,8 +22,8 @@ public interface IUsuarioDao {
 
     public void delete(Usuario usuario);
 
-    public List <Usuario> listarTodosUsuarios();
-    
+    public List<Usuario> listarTodosUsuarios();
+
     public Usuario iniciarSesion(String correo, String contraseña);
-    
+
 }
