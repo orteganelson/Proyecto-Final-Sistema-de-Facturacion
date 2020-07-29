@@ -186,4 +186,30 @@ public class DetalleDao implements IDetalleDao {
         return codigo;
     }
 
+    @Override
+    public Detalle buscarPorFactura(String numero) {
+         int salto = 20;
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                int codigoFactura = archivo.readInt();
+                Factura f= facturaDao.read(codigoFactura);
+                if (f.getNumero().equals(numero)) {
+                    archivo.seek(salto-20);
+                    Detalle detalle = new Detalle(codigoFactura, archivo.readInt(), archivo.readDouble());
+                    Producto producto = productoDao.read(archivo.readInt());
+                    detalle.setProducto(producto);
+                    Factura factura = facturaDao.read(archivo.readInt());
+                    detalle.setFactura(factura);
+
+                    return detalle;
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura y escritura read:DetalleDao");
+        }
+        return null;
+    }
+
 }

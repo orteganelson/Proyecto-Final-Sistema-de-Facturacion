@@ -66,17 +66,17 @@ public class FacturaDao implements IFacturaDao {
                 archivo.seek(salto);
                 int codigoA = archivo.readInt();
                 if (codigoA == codigo) {
-                    Factura bodega = new Factura(codigoA, archivo.readUTF().trim(), archivo.readUTF().trim(),
+                    Factura factura = new Factura(codigoA, archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readDouble(), archivo.readDouble(), archivo.readDouble());
 
-                    return bodega;
+                    return factura;
                 }
 
                 salto += tamanioRegistro;
             }
 
         } catch (IOException ex) {
-            System.out.println("Error de lectura y escritura read:BodegaDao");
+            System.out.println("Error de lectura y escritura read:FacturaDao");
         }
         return null;
 
@@ -149,6 +149,31 @@ public class FacturaDao implements IFacturaDao {
         }
 
         return codigo;
+    }
+
+    @Override
+    public Factura buscarPorNumero(String numero) {
+        int salto = 4;
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String numeroA = archivo.readUTF().trim();
+                if (numeroA.equals(numero)) {
+                    archivo.seek(salto-4);
+                    Factura factura = new Factura(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                            archivo.readDouble(), archivo.readDouble(), archivo.readDouble());
+
+                    return factura;
+                }
+
+                salto += tamanioRegistro;
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Error de lectura y escritura buscarPorNumero:FacturaDao");
+        }
+        return null;
+
     }
 
 }

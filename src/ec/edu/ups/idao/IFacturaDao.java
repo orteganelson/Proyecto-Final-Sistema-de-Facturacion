@@ -17,6 +17,8 @@ public interface IFacturaDao {
     public void create(Factura factura);
 
     public Factura read(int codigo);
+    
+    public Factura buscarPorNumero(String numero);
 
     public void anularFactura(Factura factura);
 

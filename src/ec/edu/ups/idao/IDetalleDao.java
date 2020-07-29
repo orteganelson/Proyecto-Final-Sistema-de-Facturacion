@@ -17,8 +17,12 @@ public interface IDetalleDao {
     public void create(Detalle Detalle);
 
     public Detalle read(int codigo);
+    
+    public Detalle buscarPorFactura(String numero);
 
     public void Update(Detalle Detalle);
+    
+    //npublic void asignarCabecera();
 
     public void Delete(Detalle detalle);
 

@@ -22,6 +22,7 @@ public class Factura {
     private double iva;
     private double valorAPagar;
     private Cliente cliente;
+   
 
     public Factura() {
     }
