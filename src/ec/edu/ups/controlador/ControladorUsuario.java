@@ -25,7 +25,7 @@ public class ControladorUsuario {
     private IUsuarioDao UsuarioDao;
 
     public ControladorUsuario(UsuarioDao usuarioDAO) {
-        this.UsuarioDao = UsuarioDao;
+        this.UsuarioDao = usuarioDAO;
     }
 
     public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String pass) {

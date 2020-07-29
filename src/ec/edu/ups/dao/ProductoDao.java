@@ -7,6 +7,7 @@ package ec.edu.ups.dao;
 
 import ec.edu.ups.idao.IProductoDao;
 import ec.edu.ups.modelo.Bodega;
+import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Producto;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -214,4 +215,47 @@ public class ProductoDao implements IProductoDao {
 
     }
 
+    @Override
+    public void disminuirStock(Detalle detalle) {
+        int codi = detalle.getProducto().getCodigo();
+        int cantidad = detalle.getCantidad();
+        int salto = 0;
+
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                int codigoA = archivo.readInt();
+                if (codigoA == codi) {
+                    archivo.seek(salto + 39);
+                    archivo.writeInt(archivo.readInt() - cantidad);
+                    break;
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura o escritura(Update: ProductoDao)");
+        }
+    }
+
+    @Override
+    public void aumentarStock(Detalle detalle) {
+        int codi = detalle.getProducto().getCodigo();
+        int cantidad = detalle.getCantidad();
+        int salto = 0;
+
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                int codigoA = archivo.readInt();
+                if (codigoA == codi) {
+                    archivo.seek(salto + 39);
+                    archivo.writeInt(archivo.readInt() + cantidad);
+                    break;
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura o escritura(Update: ProductoDao)");
+        }
+    }
 }

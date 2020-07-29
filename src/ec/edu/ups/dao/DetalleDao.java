@@ -113,7 +113,7 @@ public class DetalleDao implements IDetalleDao {
     @Override
     public List<Detalle> listaDetalles() {
         List<Detalle> listar = new ArrayList();
-         try {
+        try {
             int salto = 0;
 
             while (salto < archivo.length()) {
@@ -122,7 +122,7 @@ public class DetalleDao implements IDetalleDao {
                 int valor = archivo.readInt();
                 if (valor > 0) {
 
-                     Detalle detalle = new Detalle(valor, archivo.readInt(), archivo.readDouble());
+                    Detalle detalle = new Detalle(valor, archivo.readInt(), archivo.readDouble());
                     Producto producto = productoDao.read(archivo.readInt());
                     detalle.setProducto(producto);
                     Factura factura = facturaDao.read(archivo.readInt());

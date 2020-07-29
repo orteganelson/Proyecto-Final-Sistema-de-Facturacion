@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.idao;
 
+import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Producto;
 import java.util.List;
 
@@ -23,6 +24,10 @@ public interface IProductoDao {
     public void delete(Producto producto);
 
     public int obtenerUltimoCodigo();
+
+    public void disminuirStock(Detalle detalle);
+
+    public void aumentarStock(Detalle detalle);
 
     public List<Producto> listarTodosProductos();
 

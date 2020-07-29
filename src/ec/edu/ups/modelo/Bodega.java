@@ -20,11 +20,10 @@ public class Bodega {
     private String ciudad;
     private int cantidad;
 
-    //Atributos de relacion
-    private List<Producto> productos;
+ 
 
     public Bodega() {
-        this.productos = new ArrayList<>();
+   
     }
 
     public Bodega(int codigo, String nombre, String direccion, String ciudad, int cantidad) {
@@ -33,7 +32,6 @@ public class Bodega {
         this.setDireccion(direccion);
         this.setCiudad(ciudad);
         this.cantidad = cantidad;
-        this.productos = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -76,13 +74,6 @@ public class Bodega {
         this.cantidad = cantidad;
     }
 
-    public void agregarProductos(Producto producto) {
-        this.productos.add(producto);
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
 
     public String validarEspacios(String cadena, int n) {
         if (cadena.length() == n) {
