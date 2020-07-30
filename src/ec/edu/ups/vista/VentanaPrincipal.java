@@ -29,17 +29,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        btnInicio = new javax.swing.JMenu();
+        btnRegistrarU = new javax.swing.JMenuItem();
+        btnIniciarS = new javax.swing.JMenuItem();
+        bntSalir = new javax.swing.JMenuItem();
         btnAdministrar = new javax.swing.JMenu();
         btnBodegas = new javax.swing.JMenuItem();
         btnProductos = new javax.swing.JMenuItem();
         btnClientes = new javax.swing.JMenuItem();
         btnFacturas = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnPerfil = new javax.swing.JMenuItem();
         btnConsultar = new javax.swing.JMenu();
         btnPorBodega = new javax.swing.JMenuItem();
         btnDeDistribuidora = new javax.swing.JMenuItem();
+        btnIdioma = new javax.swing.JMenu();
+        btnIngles = new javax.swing.JMenuItem();
+        btnEs = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnInicio.setText("Inicio");
+
+        btnRegistrarU.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        btnRegistrarU.setText("Registrar Usuario");
+        btnInicio.add(btnRegistrarU);
+
+        btnIniciarS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        btnIniciarS.setText("Iniciar Sesión");
+        btnIniciarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSActionPerformed(evt);
+            }
+        });
+        btnInicio.add(btnIniciarS);
+
+        bntSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        bntSalir.setText("Salir");
+        btnInicio.add(bntSalir);
+
+        jMenuBar1.add(btnInicio);
 
         btnAdministrar.setText("Administrar");
 
@@ -69,14 +97,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnFacturas.setText("Facturas");
         btnAdministrar.add(btnFacturas);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Perfil");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        btnPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                btnPerfilActionPerformed(evt);
             }
         });
-        btnAdministrar.add(jMenuItem1);
+        btnAdministrar.add(btnPerfil);
 
         jMenuBar1.add(btnAdministrar);
 
@@ -91,6 +119,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnConsultar.add(btnDeDistribuidora);
 
         jMenuBar1.add(btnConsultar);
+
+        btnIdioma.setText("Idioma");
+
+        btnIngles.setText("Inglés");
+        btnIdioma.add(btnIngles);
+
+        btnEs.setText("Español");
+        btnIdioma.add(btnEs);
+
+        jMenuBar1.add(btnIdioma);
 
         setJMenuBar(jMenuBar1);
 
@@ -116,9 +154,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnIniciarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,16 +198,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bntSalir;
     private javax.swing.JMenu btnAdministrar;
     private javax.swing.JMenuItem btnBodegas;
     private javax.swing.JMenuItem btnClientes;
     private javax.swing.JMenu btnConsultar;
     private javax.swing.JMenuItem btnDeDistribuidora;
+    private javax.swing.JMenuItem btnEs;
     private javax.swing.JMenuItem btnFacturas;
+    private javax.swing.JMenu btnIdioma;
+    private javax.swing.JMenuItem btnIngles;
+    private javax.swing.JMenuItem btnIniciarS;
+    private javax.swing.JMenu btnInicio;
+    private javax.swing.JMenuItem btnPerfil;
     private javax.swing.JMenuItem btnPorBodega;
     private javax.swing.JMenuItem btnProductos;
+    private javax.swing.JMenuItem btnRegistrarU;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

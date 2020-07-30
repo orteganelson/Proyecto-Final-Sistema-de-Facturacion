@@ -51,24 +51,23 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIniciarSesion" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblUsuarioIniciar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblContraseniaIniciar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="31" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtUsuarioInicia" pref="150" max="32767" attributes="0"/>
-                                      <Component id="txtContraseniaInicia" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                          <Component id="lblIniciarSesion" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                           <Component id="btnINICIARSESION" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCorreoU" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblContraseniaIniciar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtCorreoU" pref="160" max="32767" attributes="0"/>
+                              <Component id="txtContraseniaInicia" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -82,8 +81,8 @@
                   <Component id="lblIniciarSesion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblUsuarioIniciar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtUsuarioInicia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCorreoU" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCorreoU" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -92,7 +91,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="btnINICIARSESION" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,21 +102,15 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Trebuchet MS" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="INICIO DE SESION DEL USUARIO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblUsuarioIniciar">
+        <Component class="javax.swing.JLabel" name="lblCorreoU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="USUARIO:"/>
+            <Property name="text" type="java.lang.String" value="CORREO ELECTR&#xd3;NICO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblContraseniaIniciar">
@@ -125,10 +118,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="CONTRASENIA:"/>
+            <Property name="text" type="java.lang.String" value="CONTRASE&#xd1;A:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnINICIARSESION">
@@ -145,7 +135,7 @@
             <Property name="text" type="java.lang.String" value="INICIAR SESION"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtUsuarioInicia">
+        <Component class="javax.swing.JTextField" name="txtCorreoU">
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtContraseniaInicia">
         </Component>

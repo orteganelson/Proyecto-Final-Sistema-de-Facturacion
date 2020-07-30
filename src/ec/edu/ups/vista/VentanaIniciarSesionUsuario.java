@@ -29,25 +29,22 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblIniciarSesion = new javax.swing.JLabel();
-        lblUsuarioIniciar = new javax.swing.JLabel();
+        lblCorreoU = new javax.swing.JLabel();
         lblContraseniaIniciar = new javax.swing.JLabel();
         btnINICIARSESION = new javax.swing.JButton();
-        txtUsuarioInicia = new javax.swing.JTextField();
+        txtCorreoU = new javax.swing.JTextField();
         txtContraseniaInicia = new javax.swing.JPasswordField();
 
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lblIniciarSesion.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         lblIniciarSesion.setText("INICIO DE SESION DEL USUARIO");
 
-        lblUsuarioIniciar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblUsuarioIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuarioIniciar.setText("USUARIO:");
+        lblCorreoU.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lblCorreoU.setText("CORREO ELECTRÓNICO:");
 
         lblContraseniaIniciar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblContraseniaIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        lblContraseniaIniciar.setText("CONTRASENIA:");
+        lblContraseniaIniciar.setText("CONTRASEÑA:");
 
         btnINICIARSESION.setBackground(new java.awt.Color(204, 255, 255));
         btnINICIARSESION.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -62,19 +59,19 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIniciarSesion)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUsuarioIniciar)
-                                    .addComponent(lblContraseniaIniciar))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUsuarioInicia, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txtContraseniaInicia)))))
+                        .addComponent(lblIniciarSesion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(btnINICIARSESION)))
+                        .addComponent(btnINICIARSESION))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(33, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCorreoU)
+                            .addComponent(lblContraseniaIniciar))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCorreoU, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(txtContraseniaInicia))))
                 .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,15 +81,15 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
                 .addComponent(lblIniciarSesion)
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuarioIniciar)
-                    .addComponent(txtUsuarioInicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCorreoU)
+                    .addComponent(txtCorreoU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseniaIniciar)
                     .addComponent(txtContraseniaInicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(btnINICIARSESION)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,9 +116,9 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnINICIARSESION;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContraseniaIniciar;
+    private javax.swing.JLabel lblCorreoU;
     private javax.swing.JLabel lblIniciarSesion;
-    private javax.swing.JLabel lblUsuarioIniciar;
     private javax.swing.JPasswordField txtContraseniaInicia;
-    private javax.swing.JTextField txtUsuarioInicia;
+    private javax.swing.JTextField txtCorreoU;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,23 +41,18 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
         btnCancelarUsuario = new javax.swing.JButton();
 
         lblNombreUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreUsuario.setText("NOMBRE:");
 
         lblApellidoUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblApellidoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblApellidoUsuario.setText("APELLIDO:");
 
         lblCorreoUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblCorreoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblCorreoUsuario.setText("CORREO ELECTRONICO:");
 
         lblContraseniaUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblContraseniaUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblContraseniaUsuario.setText("CONTRASENIA:");
+        lblContraseniaUsuario.setText("CONTRASEÑA:");
 
         lblTituloRegistrarUsuario.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        lblTituloRegistrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloRegistrarUsuario.setText("REGISTRO DE USUARIO");
 
         btnGuardarUsuario.setBackground(new java.awt.Color(204, 255, 255));
