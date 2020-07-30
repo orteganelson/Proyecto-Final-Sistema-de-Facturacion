@@ -18,7 +18,7 @@ public class Bodega {
     private String nombre;
     private String direccion;
     private String ciudad;
-    private int cantidad;
+    
 
  
 
@@ -26,12 +26,12 @@ public class Bodega {
    
     }
 
-    public Bodega(int codigo, String nombre, String direccion, String ciudad, int cantidad) {
+    public Bodega(int codigo, String nombre, String direccion, String ciudad) {
         this.codigo = codigo;
         this.setNombre(nombre);
         this.setDireccion(direccion);
         this.setCiudad(ciudad);
-        this.cantidad = cantidad;
+        
     }
 
     public int getCodigo() {
@@ -65,15 +65,6 @@ public class Bodega {
     public void setCiudad(String ciudad) {
         this.ciudad = validarEspacios(ciudad, 25);
     }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
 
     public String validarEspacios(String cadena, int n) {
         if (cadena.length() == n) {
@@ -125,7 +116,8 @@ public class Bodega {
 
     @Override
     public String toString() {
-        return "Bodega{" + "codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", ciudad=" + ciudad + ", cantidad=" + cantidad + '}';
+        return "Bodega{" + "codigo=" + codigo + ", nombre=" + nombre + ", direccion=" 
+                + direccion + ", ciudad=" + ciudad + '}';
     }
 
 }
