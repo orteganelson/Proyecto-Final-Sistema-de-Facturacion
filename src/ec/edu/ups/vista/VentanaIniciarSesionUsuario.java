@@ -31,7 +31,7 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
         lblIniciarSesion = new javax.swing.JLabel();
         lblCorreoU = new javax.swing.JLabel();
         lblContraseniaIniciar = new javax.swing.JLabel();
-        btnINICIARSESION = new javax.swing.JButton();
+        btnInicarS = new javax.swing.JButton();
         txtCorreoU = new javax.swing.JTextField();
         txtContraseniaInicia = new javax.swing.JPasswordField();
 
@@ -46,10 +46,10 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
         lblContraseniaIniciar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblContraseniaIniciar.setText("CONTRASEÑA:");
 
-        btnINICIARSESION.setBackground(new java.awt.Color(204, 255, 255));
-        btnINICIARSESION.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        btnINICIARSESION.setForeground(new java.awt.Color(102, 102, 102));
-        btnINICIARSESION.setText("INICIAR SESION");
+        btnInicarS.setBackground(new java.awt.Color(204, 255, 255));
+        btnInicarS.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btnInicarS.setForeground(new java.awt.Color(102, 102, 102));
+        btnInicarS.setText("INICIAR SESION");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,7 +62,7 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
                         .addComponent(lblIniciarSesion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(btnINICIARSESION))
+                        .addComponent(btnInicarS))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(33, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +88,7 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblContraseniaIniciar)
                     .addComponent(txtContraseniaInicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(btnINICIARSESION)
+                .addComponent(btnInicarS)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -113,7 +113,7 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnINICIARSESION;
+    private javax.swing.JButton btnInicarS;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContraseniaIniciar;
     private javax.swing.JLabel lblCorreoU;

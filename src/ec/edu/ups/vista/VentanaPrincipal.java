@@ -32,6 +32,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnInicio = new javax.swing.JMenu();
         btnRegistrarU = new javax.swing.JMenuItem();
         btnIniciarS = new javax.swing.JMenuItem();
+        btnCerrarS = new javax.swing.JMenuItem();
         bntSalir = new javax.swing.JMenuItem();
         btnAdministrar = new javax.swing.JMenu();
         btnBodegas = new javax.swing.JMenuItem();
@@ -62,6 +63,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         btnInicio.add(btnIniciarS);
+
+        btnCerrarS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        btnCerrarS.setText("Cerrar Sesión");
+        btnInicio.add(btnCerrarS);
 
         bntSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         bntSalir.setText("Salir");
@@ -201,6 +206,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem bntSalir;
     private javax.swing.JMenu btnAdministrar;
     private javax.swing.JMenuItem btnBodegas;
+    private javax.swing.JMenuItem btnCerrarS;
     private javax.swing.JMenuItem btnClientes;
     private javax.swing.JMenu btnConsultar;
     private javax.swing.JMenuItem btnDeDistribuidora;
