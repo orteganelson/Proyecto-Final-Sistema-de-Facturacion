@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Usuario {
 
     /*
-    
+    Declaración de atributos de la clase usuario
      */
     private String Cedula;
     private String nombre;

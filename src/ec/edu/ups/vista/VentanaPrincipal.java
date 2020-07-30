@@ -4,18 +4,35 @@
  * and open the template in the editor.
  */
 package ec.edu.ups.vista;
-
+import ec.edu.ups.dao.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import ec.edu.ups.controlador.*;
 /**
  *
  * @author Usuario
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    private UsuarioDao usuarioDao;
+    private ControladorUsuario controladorUsuario;
 
+    private VentanaIniciarSesionUsuario ventanaIniciarSesion;
+    private VentanaRegistroUsuarios ventanaRegistrarUsuario;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        btnAdministrar.setVisible(false);
+        btnCerrarS.setVisible(false);
+        
+        usuarioDao = new UsuarioDao();
+        controladorUsuario = new ControladorUsuario(usuarioDao);       
+       
+        ventanaRegistrarUsuario = new VentanaRegistroUsuarios(controladorUsuario);
     }
 
     /**
@@ -53,6 +70,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnRegistrarU.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         btnRegistrarU.setText("Registrar Usuario");
+        btnRegistrarU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarUActionPerformed(evt);
+            }
+        });
         btnInicio.add(btnRegistrarU);
 
         btnIniciarS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
@@ -70,6 +92,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         bntSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         bntSalir.setText("Salir");
+        bntSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntSalirActionPerformed(evt);
+            }
+        });
         btnInicio.add(bntSalir);
 
         jMenuBar1.add(btnInicio);
@@ -166,6 +193,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnIniciarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarSActionPerformed
+
+    private void bntSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_bntSalirActionPerformed
+
+    private void btnRegistrarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUActionPerformed
+        
+    }//GEN-LAST:event_btnRegistrarUActionPerformed
 
     /**
      * @param args the command line arguments
