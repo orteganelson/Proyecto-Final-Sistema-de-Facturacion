@@ -49,7 +49,6 @@ public class BodegaDao implements IBodegaDao {
             archivo.writeUTF(bodega.getNombre());
             archivo.writeUTF(bodega.getDireccion());
             archivo.writeUTF(bodega.getCiudad());
-            archivo.writeInt(bodega.getCantidad());
 
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura create: BodegaDao");
@@ -65,7 +64,7 @@ public class BodegaDao implements IBodegaDao {
                 int codigoA = archivo.readInt();
                 if (codigoA == codigo) {
                     Bodega bodega = new Bodega(codigoA, archivo.readUTF().trim(), archivo.readUTF().trim(),
-                            archivo.readUTF().trim(), archivo.readInt());
+                            archivo.readUTF().trim());
 
                     return bodega;
                 }
@@ -93,7 +92,6 @@ public class BodegaDao implements IBodegaDao {
                     archivo.writeUTF(bodega.getNombre());
                     archivo.writeUTF(bodega.getDireccion());
                     archivo.writeUTF(bodega.getCiudad());
-                    archivo.writeInt(bodega.getCantidad());
 
                     break;
                 }
@@ -147,7 +145,7 @@ public class BodegaDao implements IBodegaDao {
                 if (valor > 0) {
 
                     Bodega bodega = new Bodega(valor, archivo.readUTF().trim(), archivo.readUTF().trim(),
-                            archivo.readUTF().trim(), archivo.readInt());
+                            archivo.readUTF().trim());
                     listaBodegas.add(bodega);
 
                 }
