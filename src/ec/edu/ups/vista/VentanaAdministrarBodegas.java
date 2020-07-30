@@ -43,24 +43,34 @@ public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaBodega = new javax.swing.JTable();
 
+        lblBodega.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblBodega.setText("Bodega:");
 
+        lblCodigoB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblCodigoB.setText("Código:");
 
+        lblNombreB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblNombreB.setText("Nombre:");
 
+        lblCiudadB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblCiudadB.setText("Ciudad:");
 
+        lblDireccionB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblDireccionB.setText("Dirección:");
 
+        btnAgregarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnAgregarB.setText("Agregar");
 
+        btnEliminarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnEliminarB.setText("Eliminar");
 
+        btnEditarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnEditarB.setText("Editar");
 
+        btnCancelarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnCancelarB.setText("Cancelar");
 
+        tablaBodega.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         tablaBodega.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -105,7 +115,9 @@ public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
                         .addComponent(btnEditarB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelarB))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,9 +149,9 @@ public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminarB)
                     .addComponent(btnEditarB)
                     .addComponent(btnCancelarB))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

@@ -47,26 +47,37 @@ public class VentanaAdministrarCliente extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
 
+        lblCliente.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblCliente.setText("Cliente:");
 
+        lblNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblNombre.setText("Nombre:");
 
+        lblApellido.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblApellido.setText("Apellido:");
 
+        lblCedula.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblCedula.setText("Cédula:");
 
+        lblCorreo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblCorreo.setText("Correo Electrónico:");
 
+        lblDireccion.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblDireccion.setText("Dirección:");
 
+        lblTelefono.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblTelefono.setText("Teléfono:");
 
+        btnAgregar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnAgregar.setText("Agregar");
 
+        btnEliminar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
 
+        btnEditar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnEditar.setText("Editar");
 
+        btnCancelar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
 
         tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,7 +128,7 @@ public class VentanaAdministrarCliente extends javax.swing.JInternalFrame {
                         .addComponent(btnEditar)))
                 .addGap(33, 33, 33)
                 .addComponent(btnCancelar)
-                .addGap(11, 90, Short.MAX_VALUE))
+                .addGap(11, 70, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))

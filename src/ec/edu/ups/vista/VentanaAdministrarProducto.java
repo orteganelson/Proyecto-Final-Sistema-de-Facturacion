@@ -48,28 +48,38 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
         lblCantidadP = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
 
+        lblProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblProducto.setText("Producto:");
 
+        lblCodigoP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblCodigoP.setText("Código:");
 
+        lblNombreP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblNombreP.setText("Nombre:");
 
+        lblPrecioP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblPrecioP.setText("Precio:");
 
+        lblBodegaP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblBodegaP.setText("Bodega:");
 
+        lblDescripcion.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblDescripcion.setText("Descripción:");
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
 
+        btnAgregarP.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnAgregarP.setText("Agregar");
 
+        btnEliminarP.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnEliminarP.setText("Eliminar");
 
+        btnEditarP.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnEditarP.setText("Editar");
 
+        btnCancelarP.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnCancelarP.setText("Cancelar");
 
         tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
@@ -85,6 +95,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tablaProducto);
 
+        lblCantidadP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblCantidadP.setText("Cantidad:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,7 +167,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBodegaP)
                     .addComponent(txtBodegaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantidadP)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,11 +176,12 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
                     .addComponent(lblDescripcion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarP)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminarP)
-                    .addComponent(btnEditarP)
-                    .addComponent(btnCancelarP))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAgregarP)
+                        .addComponent(btnEditarP)
+                        .addComponent(btnCancelarP)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
