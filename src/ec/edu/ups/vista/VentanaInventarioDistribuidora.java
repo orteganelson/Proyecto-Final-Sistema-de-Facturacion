@@ -27,15 +27,70 @@ public class VentanaInventarioDistribuidora extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tablaStockD = new javax.swing.JScrollPane();
+        tablaStockBodega = new javax.swing.JTable();
+        lblStockDistribuidora = new javax.swing.JLabel();
+        btnListar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+
+        tablaStockBodega.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cantidad", "Código", "Nombre", "Precio", "Descripcion", "Bodega"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaStockD.setViewportView(tablaStockBodega);
+
+        lblStockDistribuidora.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblStockDistribuidora.setText("Stock Distribuidora");
+
+        btnListar.setText("Listar");
+
+        btnSalir.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tablaStockD, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblStockDistribuidora)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(121, Short.MAX_VALUE)
+                .addComponent(btnListar)
+                .addGap(57, 57, 57)
+                .addComponent(btnSalir)
+                .addGap(162, 162, 162))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblStockDistribuidora)
+                .addGap(18, 18, 18)
+                .addComponent(tablaStockD, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListar)
+                    .addComponent(btnSalir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -43,5 +98,10 @@ public class VentanaInventarioDistribuidora extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel lblStockDistribuidora;
+    private javax.swing.JTable tablaStockBodega;
+    private javax.swing.JScrollPane tablaStockD;
     // End of variables declaration//GEN-END:variables
 }

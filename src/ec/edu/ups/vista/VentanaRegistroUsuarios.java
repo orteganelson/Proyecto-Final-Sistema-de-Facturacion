@@ -50,7 +50,7 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
         txtContraseniaUsuario = new javax.swing.JTextField();
         btnGuardarUsuario = new javax.swing.JButton();
         btnCancelarUsuario = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
 
         lblNombreUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -88,8 +88,8 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("CÉDULA:");
+        lblCedula.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lblCedula.setText("CÉDULA:");
 
         javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
         panelRegistro.setLayout(panelRegistroLayout);
@@ -112,7 +112,7 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
                                     .addGroup(panelRegistroLayout.createSequentialGroup()
                                         .addGap(16, 16, 16)
                                         .addComponent(btnGuardarUsuario))
-                                    .addComponent(jLabel1))
+                                    .addComponent(lblCedula))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnCancelarUsuario)
@@ -140,7 +140,7 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(txtApellidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblCedula)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -205,8 +205,8 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarUsuario;
     private javax.swing.JButton btnGuardarUsuario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblApellidoUsuario;
+    private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblContraseniaUsuario;
     private javax.swing.JLabel lblCorreoUsuario;
     private javax.swing.JLabel lblNombreUsuario;
