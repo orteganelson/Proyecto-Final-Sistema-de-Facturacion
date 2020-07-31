@@ -295,7 +295,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
     }
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
        cargarSiguienteCodigo();
-        cargarBodegasTbl();
+        cargarProductoTbl();
        cargarCbxBodegas();
     }//GEN-LAST:event_formInternalFrameActivated
 
@@ -310,7 +310,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
                , txtDescripcion.getText().trim(),b.getCodigo());
        JOptionPane.showMessageDialog(this, "Producto agregado exitosamente");
        Limpiar();
-       cargarBodegasTbl();
+       cargarProductoTbl();
        }
     }//GEN-LAST:event_btnAgregarPActionPerformed
 
@@ -325,7 +325,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
             controladorProducto.eliminarProducto(producto);
              JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente");
               Limpiar();
-       cargarBodegasTbl();
+       cargarProductoTbl();
              }
         } 
     }//GEN-LAST:event_btnEliminarPActionPerformed
@@ -341,7 +341,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
                , txtDescripcion.getText().trim(),b.getCodigo());
        JOptionPane.showMessageDialog(this, "Producto agregado exitosamente");
         Limpiar();
-       cargarBodegasTbl();
+       cargarProductoTbl();
        }
     }//GEN-LAST:event_btnEditarPActionPerformed
 
@@ -356,7 +356,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-       cargarBodegasTbl() ;
+       cargarProductoTbl() ;
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductoMouseClicked
@@ -385,7 +385,7 @@ public class VentanaAdministrarProducto extends javax.swing.JInternalFrame {
      cbxBodega.setSelectedIndex(0);
     }
     
-      public void cargarBodegasTbl() {
+      public void cargarProductoTbl() {
          DefaultTableModel modelo = (DefaultTableModel) tablaProducto.getModel();
     modelo.setRowCount(0);
     for(Producto producto: controladorProducto.listarProductos()){

@@ -32,9 +32,11 @@ public class ControladorDetalle {
    
    
    
-   public void crearDetalle (int codigo, int cantidad, double total, int codigoProducto){
-   Detalle detalle = new Detalle(codigo,cantidad,total);
+   public void crearDetalle (int codigo, int cantidad,  int codigoProducto){
+   Detalle detalle = new Detalle(codigo,cantidad);
+  
    Producto producto= productoDao.read(codigoProducto);
+    detalle.setTotal(cantidad*producto.getPrecio());
    detalle.setProducto(producto);
    detalleDao.create(detalle);
   
@@ -45,8 +47,9 @@ public class ControladorDetalle {
   detalleDao.Delete(detalle);
   }
   public void actualizarDetalle(int codigo, int cantidad, double total, int codigoProducto){
-  Detalle detalle = new Detalle(codigo,cantidad,total);
+  Detalle detalle = new Detalle(codigo,cantidad);
    Producto producto= productoDao.read(codigoProducto);
+    detalle.setTotal(cantidad*producto.getPrecio());
    detalle.setProducto(producto);
    detalleDao.Update(detalle);
   }
@@ -54,5 +57,21 @@ public class ControladorDetalle {
        return detalleDao.listaDetalles();
   
   }
- 
+  public int obtenerSiguienteCodigo() {
+        int codigo = detalleDao.obtenerUltimoCodigo();
+
+        return codigo;
+    }
+  public Double obtenerSubtotal(String numero){
+      double subtotal=0;
+      List<Detalle> detalles= detalleDao.listaDetalles();
+   for (Detalle detalle: detalles){
+       if(detalle.getFactura().getNumero().trim().equals(numero.trim())){
+       subtotal+=detalle.getTotal();
+       }
+   
+   }
+       return subtotal;
+  
+  }
 }

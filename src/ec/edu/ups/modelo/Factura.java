@@ -27,10 +27,10 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(int codigo, String numero, String estado, double subtotal, double iva, double valorAPagar) {
+    public Factura(int codigo, String numero, String estado,String fecha, double subtotal, double iva, double valorAPagar) {
         this.codigo = codigo;
         this.numero = numero;
-        this.setFecha();
+        this.setFecha(fecha);
         this.setEstado(estado);
         this.subtotal = subtotal;
         this.iva = iva;
@@ -57,12 +57,8 @@ public class Factura {
         return fecha;
     }
 
-    public void setFecha() {
-        Date fecha = new Date();
-        String strDateFormat; // El formato de fecha está especificado  
-        strDateFormat = "dd-MMM-aaaa";
-        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat); // La cadena de formato de fecha se pasa como un argumento al objeto 
-        this.fecha = validarEspacios(objSDF.format(fecha), 12);
+    public void setFecha(String fecha) {
+        this.fecha=validarEspacios(fecha,12);
     }
 
     public String getEstado() {

@@ -23,7 +23,7 @@ public class DetalleDao implements IDetalleDao {
     /**
      * Estructura del Archivo private int codigo; 4 bytes private int cantidad;
      * 4 bytes private double total; 8 bytes private int codigoProducto 4 bytes
-     * private int codigoFactura 4 bytes tamaño por registro = 24 bytes
+     * private String numeroFactura 17 caracteres +2 bytes tamaño por registro = 39 bytes
      *
      * @param Detalle
      */
@@ -37,9 +37,9 @@ public class DetalleDao implements IDetalleDao {
         codigo = 0;
         productoDao = new ProductoDao();
         facturaDao = new FacturaDao();
-        this.tamanioRegistro = 24;
+        this.tamanioRegistro = 39;
         try {
-            archivo = new RandomAccessFile("datos/facturas.dat", "rw");
+            archivo = new RandomAccessFile("datos/detalles.dat", "rw");
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura: DetalleDao");
 
@@ -54,7 +54,7 @@ public class DetalleDao implements IDetalleDao {
             archivo.writeInt(Detalle.getCantidad());
             archivo.writeDouble(Detalle.getTotal());
             archivo.writeInt(Detalle.getProducto().getCodigo());
-            archivo.writeInt(Detalle.getFactura().getCodigo());
+            archivo.writeUTF(Detalle.getFactura().getNumero());
 
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura create: DetalleDao");
@@ -70,10 +70,14 @@ public class DetalleDao implements IDetalleDao {
                 archivo.seek(salto);
                 int codigoA = archivo.readInt();
                 if (codigoA == codigo) {
-                    Detalle detalle = new Detalle(codigoA, archivo.readInt(), archivo.readDouble());
+                    Detalle detalle = new Detalle();
+                    detalle.setCodigo(codigoA);
+                    detalle.setCantidad(archivo.readInt());
+                    detalle.setTotal(archivo.readDouble());
                     Producto producto = productoDao.read(archivo.readInt());
                     detalle.setProducto(producto);
-                    Factura factura = facturaDao.read(archivo.readInt());
+                    Factura factura = new Factura();
+                    factura.setNumero(archivo.readUTF().trim());
                     detalle.setFactura(factura);
 
                     return detalle;
@@ -99,7 +103,7 @@ public class DetalleDao implements IDetalleDao {
                     archivo.writeInt(Detalle.getCantidad());
                     archivo.writeDouble(Detalle.getTotal());
                     archivo.writeInt(Detalle.getProducto().getCodigo());
-                    archivo.writeInt(Detalle.getFactura().getCodigo());;
+                    archivo.writeUTF(Detalle.getFactura().getNumero());
 
                     break;
                 }
@@ -120,12 +124,16 @@ public class DetalleDao implements IDetalleDao {
                 archivo.seek(salto);
 
                 int valor = archivo.readInt();
-                if (valor > 0) {
+                if (valor != 0) {
 
-                    Detalle detalle = new Detalle(valor, archivo.readInt(), archivo.readDouble());
+                    Detalle detalle = new Detalle();
+                    detalle.setCodigo(valor);
+                    detalle.setCantidad(archivo.readInt());
+                    detalle.setTotal(archivo.readDouble());
                     Producto producto = productoDao.read(archivo.readInt());
                     detalle.setProducto(producto);
-                    Factura factura = facturaDao.read(archivo.readInt());
+                    Factura factura = new Factura();
+                    factura.setNumero(archivo.readUTF().trim());
                     detalle.setFactura(factura);
 
                     listar.add(detalle);
@@ -156,7 +164,7 @@ public class DetalleDao implements IDetalleDao {
                     archivo.writeInt(0);
                     archivo.writeDouble(0);
                     archivo.writeInt(0);
-                    archivo.writeInt(0);
+                    archivo.writeUTF(llenarEspacios(17));
                     break;
                 }
                 salto += tamanioRegistro;
@@ -206,18 +214,24 @@ public class DetalleDao implements IDetalleDao {
 
     @Override
     public Detalle buscarPorFactura(String numero) {
-         int salto = 20;
+    
+       
+        int salto = 20;
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                int codigoFactura = archivo.readInt();
-                Factura f= facturaDao.read(codigoFactura);
-                if (f.getNumero().equals(numero)) {
+                String  numFactura = archivo.readUTF();
+                
+                if (numFactura.equals(numero)) {
                     archivo.seek(salto-20);
-                    Detalle detalle = new Detalle(codigoFactura, archivo.readInt(), archivo.readDouble());
+                    Detalle detalle = new Detalle();
+                     detalle.setCodigo(archivo.readInt());
+                    detalle.setCantidad(archivo.readInt());
+                    detalle.setTotal(archivo.readDouble());
                     Producto producto = productoDao.read(archivo.readInt());
                     detalle.setProducto(producto);
-                    Factura factura = facturaDao.read(archivo.readInt());
+                    Factura factura = new Factura();
+                    factura.setNumero(numero);
                     detalle.setFactura(factura);
 
                     return detalle;
@@ -230,4 +244,26 @@ public class DetalleDao implements IDetalleDao {
         return null;
     }
 
-}
+    @Override
+    public Double obtenerSubtotal(String numero) {
+        
+        double subtotal=0;
+        int salto = 20;
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String numeroA=archivo.readUTF().trim();
+                if (numeroA.equals(numero)) {
+                    archivo.seek(salto-12);
+                   subtotal+=archivo.readDouble();
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura y escritura read:DetalleDao");
+        }
+        return subtotal;
+    }
+       
+    }
+

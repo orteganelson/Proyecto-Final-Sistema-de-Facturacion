@@ -71,7 +71,7 @@ public class FacturaDao implements IFacturaDao {
                 archivo.seek(salto);
                 int codigoA = archivo.readInt();
                 if (codigoA == codigo) {
-                    Factura factura = new Factura(codigoA, archivo.readUTF().trim(), archivo.readUTF().trim(),
+                    Factura factura = new Factura(codigoA, archivo.readUTF().trim(),archivo.readUTF().trim(),archivo.readUTF().trim(),
                             archivo.readDouble(), archivo.readDouble(), archivo.readDouble());
                     Cliente cliente = clienteDao.read(archivo.readUTF().trim());
                     factura.setCliente(cliente);
@@ -185,7 +185,7 @@ public class FacturaDao implements IFacturaDao {
                 String numeroA = archivo.readUTF().trim();
                 if (numeroA.equals(numero)) {
                     archivo.seek(salto-4);
-                    Factura factura = new Factura(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                    Factura factura = new Factura(archivo.readInt(), archivo.readUTF().trim(),archivo.readUTF().trim() , archivo.readUTF().trim(),
                             archivo.readDouble(), archivo.readDouble(), archivo.readDouble());
                     Cliente cliente = clienteDao.read(archivo.readUTF().trim());
                     factura.setCliente(cliente); 

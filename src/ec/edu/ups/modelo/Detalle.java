@@ -22,7 +22,7 @@ public class Detalle {
     public Detalle() {
     }
 
-    public Detalle(int codigo, int cantidad, double total) {
+    public Detalle(int codigo, int cantidad) {
         this.codigo = codigo;
         this.cantidad = cantidad;
         this.total = total;

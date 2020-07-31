@@ -67,8 +67,8 @@ public class ControladorCliente {
         return cliente;
     }
     
-    public void agregarFactura (int codigo, String numero, String estado, double subtotal, double iva, double valorAPagar, String cedula){
-    Factura factura = new Factura(codigo,numero,estado,subtotal,iva,valorAPagar);
+    public void agregarFactura (int codigo, String numero, String fecha,String estado, double subtotal, double iva, double valorAPagar, String cedula){
+    Factura factura = new Factura(codigo,numero,fecha,estado,subtotal,iva,valorAPagar);
     Cliente cliente =clienteDao.read(cedula);
     factura.setCliente(cliente);
     facturaDao.create(factura);

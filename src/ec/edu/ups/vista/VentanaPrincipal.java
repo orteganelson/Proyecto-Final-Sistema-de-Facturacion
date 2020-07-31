@@ -63,7 +63,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorCliente = new ControladorCliente(clienteDao,facturaDao,detalleDao,productoDao);
         controladorProducto = new ControladorProducto (bodegaDao,productoDao);
         controladorBodega = new ControladorBodega(bodegaDao,productoDao);
-        controladorFactura = new ControladorFactura(facturaDao,detalleDao,productoDao);
+        controladorFactura = new ControladorFactura(facturaDao,detalleDao,productoDao,clienteDao);
         controladorDetalle = new ControladorDetalle(detalleDao,productoDao);
        
         ventanaIniciarSesion = new VentanaIniciarSesionUsuario(controladorUsuario, this);
@@ -74,7 +74,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         inventarioBodega = new VentanaInventarioBodega  ();
         inventarioDistribuidora = new VentanaInventarioDistribuidora();
         perfil = new VentanaPerfil ();
-        factura= new Factura ();
+        factura= new Factura (controladorCliente,controladorDetalle,controladorFactura);
         
         
         

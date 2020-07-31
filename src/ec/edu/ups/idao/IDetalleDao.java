@@ -22,7 +22,7 @@ public interface IDetalleDao {
 
     public void Update(Detalle Detalle);
     
-    //npublic void asignarCabecera();
+    public Double obtenerSubtotal(String numero);
 
     public void Delete(Detalle detalle);
 
