@@ -54,8 +54,5 @@ public class ControladorDetalle {
        return detalleDao.listaDetalles();
   
   }
-  
-  public void asignarCabecera (){
-  
-  }
+ 
 }

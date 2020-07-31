@@ -16,25 +16,139 @@ import ec.edu.ups.controlador.*;
  * @author Usuario
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    private UsuarioDao usuarioDao;
-    private ControladorUsuario controladorUsuario;
-
-    private VentanaIniciarSesionUsuario ventanaIniciarSesion;
+     private VentanaIniciarSesionUsuario ventanaIniciarSesion;
     private VentanaRegistroUsuarios ventanaRegistrarUsuario;
+     private VentanaAdministrarBodegas gestionBodega;
+     private VentanaAdministrarCliente gestionCliente;
+     private VentanaAdministrarProducto gestionProducto;
+     private VentanaInventarioBodega inventarioBodega;
+     private VentanaInventarioDistribuidora inventarioDistribuidora;
+     private VentanaPerfil perfil;
+     private Factura factura;
+     
+    private UsuarioDao usuarioDao;
+    private ClienteDao clienteDao;
+    private ProductoDao productoDao;
+    private BodegaDao bodegaDao;
+    private FacturaDao facturaDao;
+    private DetalleDao detalleDao;
+    
+    private ControladorUsuario controladorUsuario;
+    private ControladorCliente controladorCliente;
+    private ControladorProducto controladorProducto;
+    private ControladorBodega controladorBodega;
+    private ControladorFactura controladorFactura;
+    private ControladorDetalle controladorDetalle;
+    
+
+   
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
         btnAdministrar.setVisible(false);
+        btnConsultar.setVisible(false);
         btnCerrarS.setVisible(false);
+        btnIdioma.setVisible(true);
         
         usuarioDao = new UsuarioDao();
-        controladorUsuario = new ControladorUsuario(usuarioDao);       
+        clienteDao = new ClienteDao();
+        productoDao = new ProductoDao();
+        bodegaDao = new BodegaDao();
+        facturaDao = new FacturaDao();
+        detalleDao = new DetalleDao();
+        
+        controladorUsuario = new ControladorUsuario(usuarioDao);      
+        controladorCliente = new ControladorCliente(clienteDao,facturaDao,detalleDao,productoDao);
+        controladorProducto = new ControladorProducto (bodegaDao,productoDao);
+        controladorBodega = new ControladorBodega(bodegaDao,productoDao);
+        controladorFactura = new ControladorFactura(facturaDao,detalleDao,productoDao);
+        controladorDetalle = new ControladorDetalle(detalleDao,productoDao);
        
+        ventanaIniciarSesion = new VentanaIniciarSesionUsuario(controladorUsuario, this);
         ventanaRegistrarUsuario = new VentanaRegistroUsuarios(controladorUsuario);
+        gestionBodega = new VentanaAdministrarBodegas  (controladorBodega); 
+        gestionCliente = new VentanaAdministrarCliente  (controladorCliente);
+        gestionProducto = new VentanaAdministrarProducto (controladorProducto,controladorBodega);
+        inventarioBodega = new VentanaInventarioBodega  ();
+        inventarioDistribuidora = new VentanaInventarioDistribuidora();
+        perfil = new VentanaPerfil ();
+        factura= new Factura ();
+        
+        
+        
+        
     }
 
+    public JMenuItem getBntSalir() {
+        return bntSalir;
+    }
+
+    public JMenu getBtnAdministrar() {
+        return btnAdministrar;
+    }
+
+    public JMenuItem getBtnBodegas() {
+        return btnBodegas;
+    }
+
+    public JMenuItem getBtnCerrarS() {
+        return btnCerrarS;
+    }
+
+    public JMenuItem getBtnClientes() {
+        return btnClientes;
+    }
+
+    public JMenu getBtnConsultar() {
+        return btnConsultar;
+    }
+
+    public JMenuItem getBtnDeDistribuidora() {
+        return btnDeDistribuidora;
+    }
+
+    public JMenuItem getBtnEs() {
+        return btnEs;
+    }
+
+    public JMenuItem getBtnFacturas() {
+        return btnFacturas;
+    }
+
+    public JMenu getBtnIdioma() {
+        return btnIdioma;
+    }
+
+    public JMenuItem getBtnIngles() {
+        return btnIngles;
+    }
+
+    public JMenuItem getBtnIniciarS() {
+        return btnIniciarS;
+    }
+
+    public JMenu getBtnInicio() {
+        return btnInicio;
+    }
+
+    public JMenuItem getBtnPerfil() {
+        return btnPerfil;
+    }
+
+    public JMenuItem getBtnPorBodega() {
+        return btnPorBodega;
+    }
+
+    public JMenuItem getBtnProductos() {
+        return btnProductos;
+    }
+
+    public JMenuItem getBtnRegistrarU() {
+        return btnRegistrarU;
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +179,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnEs = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 437, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
 
         btnInicio.setText("Inicio");
 
@@ -88,6 +216,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnCerrarS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         btnCerrarS.setText("Cerrar Sesión");
+        btnCerrarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSActionPerformed(evt);
+            }
+        });
         btnInicio.add(btnCerrarS);
 
         bntSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
@@ -105,6 +238,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnBodegas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         btnBodegas.setText("Bodegas");
+        btnBodegas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBodegasActionPerformed(evt);
+            }
+        });
         btnAdministrar.add(btnBodegas);
 
         btnProductos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
@@ -127,6 +265,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnFacturas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         btnFacturas.setText("Facturas");
+        btnFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturasActionPerformed(evt);
+            }
+        });
         btnAdministrar.add(btnFacturas);
 
         btnPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
@@ -144,10 +287,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnPorBodega.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         btnPorBodega.setText("Por Bodega");
+        btnPorBodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPorBodegaActionPerformed(evt);
+            }
+        });
         btnConsultar.add(btnPorBodega);
 
         btnDeDistribuidora.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
         btnDeDistribuidora.setText("De la Distribuidora");
+        btnDeDistribuidora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeDistribuidoraActionPerformed(evt);
+            }
+        });
         btnConsultar.add(btnDeDistribuidora);
 
         jMenuBar1.add(btnConsultar);
@@ -164,34 +317,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        // TODO add your handling code here:
+      jDesktopPane1.add(gestionProducto);
+      gestionProducto.setVisible(true);
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.add(gestionCliente);
+        gestionCliente.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        // TODO add your handling code here:
+       jDesktopPane1.add(perfil);
+       perfil.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnIniciarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSActionPerformed
-        // TODO add your handling code here:
+       jDesktopPane1.add(ventanaIniciarSesion);
+       ventanaIniciarSesion.setVisible(true);
     }//GEN-LAST:event_btnIniciarSActionPerformed
 
     private void bntSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalirActionPerformed
@@ -199,8 +345,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bntSalirActionPerformed
 
     private void btnRegistrarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUActionPerformed
-        
+        jDesktopPane1.add(ventanaRegistrarUsuario);
+        ventanaRegistrarUsuario.setVisible(true);
+        btnIniciarS.setVisible(true);
+        bntSalir.setVisible(true);
+        btnAdministrar.setVisible(false);
+        btnConsultar.setVisible(false);
+        btnCerrarS.setVisible(false);
     }//GEN-LAST:event_btnRegistrarUActionPerformed
+
+    private void btnCerrarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSActionPerformed
+       btnIniciarS.setVisible(true);
+       btnRegistrarU.setVisible(true);
+       btnAdministrar.setVisible(false);
+       btnConsultar.setVisible(false);
+       btnCerrarS.setVisible(true);
+    }//GEN-LAST:event_btnCerrarSActionPerformed
+
+    private void btnBodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBodegasActionPerformed
+       jDesktopPane1.add(gestionBodega);
+       gestionBodega.setVisible(true);
+    }//GEN-LAST:event_btnBodegasActionPerformed
+
+    private void btnPorBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorBodegaActionPerformed
+       jDesktopPane1.add(inventarioBodega);
+       inventarioBodega.setVisible(true);
+    }//GEN-LAST:event_btnPorBodegaActionPerformed
+
+    private void btnDeDistribuidoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeDistribuidoraActionPerformed
+        jDesktopPane1.add(inventarioDistribuidora);
+        inventarioDistribuidora.setVisible(true);
+    }//GEN-LAST:event_btnDeDistribuidoraActionPerformed
+
+    private void btnFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturasActionPerformed
+       jDesktopPane1.add(factura);
+       factura.setVisible(true);
+    }//GEN-LAST:event_btnFacturasActionPerformed
 
     /**
      * @param args the command line arguments

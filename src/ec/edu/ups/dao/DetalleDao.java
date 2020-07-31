@@ -173,18 +173,36 @@ public class DetalleDao implements IDetalleDao {
     }
 
     @Override
-    public int obtenerUltimoCodigo() {
+     public int obtenerUltimoCodigo() {
+ 
+    boolean f=false;
         try {
-            if (archivo.length() >= tamanioRegistro) {
-                archivo.seek(archivo.length() - tamanioRegistro);
-                codigo = archivo.readInt();
+             long pos= archivo.length() - tamanioRegistro;
+             if (archivo.length()==tamanioRegistro){
+             archivo.seek(pos);
+             codigo=archivo.readInt();
+             }else if (archivo.length() > tamanioRegistro) {
+              
+              
+            while(f==false){
+                archivo.seek(pos);
+               
+               if (archivo.readInt()!=0){
+                   break;
+               }
+                pos-=tamanioRegistro;
+            }
+                archivo.seek(pos);
+                codigo=archivo.readInt();
             }
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura");
         }
 
         return codigo;
+    
     }
+    
 
     @Override
     public Detalle buscarPorFactura(String numero) {

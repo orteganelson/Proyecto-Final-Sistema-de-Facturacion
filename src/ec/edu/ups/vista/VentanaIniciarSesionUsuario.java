@@ -5,6 +5,9 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorUsuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author paul_
@@ -14,8 +17,12 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaIniciarSesionUsuario
      */
-    public VentanaIniciarSesionUsuario() {
+    private VentanaPrincipal ventanaPrincipal;
+    private ControladorUsuario controladorUsuario;
+    public VentanaIniciarSesionUsuario(ControladorUsuario controladorUsuario, VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.controladorUsuario = controladorUsuario;
     }
 
     /**
@@ -35,6 +42,8 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
         txtCorreoU = new javax.swing.JTextField();
         txtContraseniaInicia = new javax.swing.JPasswordField();
 
+        setClosable(true);
+
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lblIniciarSesion.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -50,6 +59,11 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
         btnInicarS.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btnInicarS.setForeground(new java.awt.Color(102, 102, 102));
         btnInicarS.setText("INICIAR SESION");
+        btnInicarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicarSActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,6 +126,37 @@ public class VentanaIniciarSesionUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInicarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarSActionPerformed
+        String usuario = txtCorreoU.getText();
+        String pass = "";
+        char[] pass1 = txtContraseniaInicia.getPassword();
+        for (int i = 0; i < pass1.length; i++) {
+            pass = pass + pass1[i];
+        }
+
+        if (controladorUsuario.validarUsuario(usuario, pass)) {
+            ventanaPrincipal.getBtnIniciarS().setVisible(false);
+            ventanaPrincipal.getBtnCerrarS().setVisible(true);
+            ventanaPrincipal.getBtnAdministrar().setVisible(true);
+            ventanaPrincipal.getBtnConsultar().setVisible(true);
+            
+            ventanaPrincipal.getBntSalir().setVisible(false);
+            ventanaPrincipal.getBtnRegistrarU().setVisible(false);
+             
+
+            this.dispose();
+            JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso");
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrecta ");
+            Limpiar();
+        }
+
+    }//GEN-LAST:event_btnInicarSActionPerformed
+       public void Limpiar() {
+        txtCorreoU.setText("");
+        txtContraseniaInicia.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInicarS;
     private javax.swing.JPanel jPanel1;

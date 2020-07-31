@@ -6,6 +6,7 @@
 package ec.edu.ups.dao;
 
 import ec.edu.ups.idao.IFacturaDao;
+import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Factura;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -22,18 +23,21 @@ public class FacturaDao implements IFacturaDao {
      * 17 caracteres (Nro 000-000-000005022) + 2 bytes extras private String
      * fecha 12 caracteres + 2 bytes extras; private String estado; 8 caracteres
      * + 2 bytes extras private double subtotal; 8 bytes private double iva; 8
-     * bytes private double valorAPagar 8 bytes 65 bytes + 6 bytes por String =
-     * 71 bytes por registro
+     * bytes private double valorAPagar 8 bytes private String cedulaCliente 10 caracteres + 2 extras 75 bytes + 8 bytes por String =
+     * 83 bytes por registro
      *
      * @param factura
      */
     private int codigo;
     private int tamanioRegistro;
     private RandomAccessFile archivo;
+    private ClienteDao clienteDao;
 
     public FacturaDao() {
+        clienteDao = new ClienteDao();
+                
         codigo = 0;
-        this.tamanioRegistro = 71;
+        this.tamanioRegistro = 83;
         try {
             archivo = new RandomAccessFile("datos/facturas.dat", "rw");
         } catch (IOException ex) {
@@ -52,6 +56,7 @@ public class FacturaDao implements IFacturaDao {
             archivo.writeDouble(factura.getSubtotal());
             archivo.writeDouble(factura.getIva());
             archivo.writeDouble(factura.getValorAPagar());
+            archivo.writeUTF(factura.getCliente().getCedula());
 
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura create: ProductoDao");
@@ -68,6 +73,8 @@ public class FacturaDao implements IFacturaDao {
                 if (codigoA == codigo) {
                     Factura factura = new Factura(codigoA, archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readDouble(), archivo.readDouble(), archivo.readDouble());
+                    Cliente cliente = clienteDao.read(archivo.readUTF().trim());
+                    factura.setCliente(cliente);
 
                     return factura;
                 }
@@ -85,12 +92,12 @@ public class FacturaDao implements IFacturaDao {
     @Override
     public void anularFactura(Factura factura) {
         int salto = 0;
-        int codigo = factura.getCodigo();
+        int cod = factura.getCodigo();
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 int codigoA = archivo.readInt();
-                if (codigoA == codigo) {
+                if (codigoA == cod) {
                     archivo.seek(salto + 37);
                     archivo.writeUTF(validarEspacios("anulado", 8));
                     break;
@@ -98,7 +105,7 @@ public class FacturaDao implements IFacturaDao {
                 salto += tamanioRegistro;
             }
         } catch (IOException ex) {
-            System.out.println("Error de lectura o escritura Update :BodegaDao");
+            System.out.println("Error de lectura o escritura Update :FacturaDao");
         }
     }
 
@@ -138,17 +145,35 @@ public class FacturaDao implements IFacturaDao {
     }
 
     @Override
-    public int obtenerUltimoCodigo() {
+      public int obtenerUltimoCodigo() {
+ 
+    boolean f=false;
         try {
-            if (archivo.length() >= tamanioRegistro) {
-                archivo.seek(archivo.length() - tamanioRegistro);
-                codigo = archivo.readInt();
+             long pos= archivo.length() - tamanioRegistro;
+             if (archivo.length()==tamanioRegistro){
+             archivo.seek(pos);
+             codigo=archivo.readInt();
+             }else if (archivo.length() > tamanioRegistro) {
+              
+              
+            while(f==false){
+                archivo.seek(pos);
+               
+               if (archivo.readInt()!=0){
+                   break;
+               }
+                pos-=tamanioRegistro;
+            }
+                archivo.seek(pos);
+                codigo=archivo.readInt();
             }
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura");
         }
 
         return codigo;
+    
+    
     }
 
     @Override
@@ -162,7 +187,8 @@ public class FacturaDao implements IFacturaDao {
                     archivo.seek(salto-4);
                     Factura factura = new Factura(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readDouble(), archivo.readDouble(), archivo.readDouble());
-
+                    Cliente cliente = clienteDao.read(archivo.readUTF().trim());
+                    factura.setCliente(cliente); 
                     return factura;
                 }
 

@@ -36,6 +36,8 @@ public class VentanaInventarioDistribuidora extends javax.swing.JInternalFrame {
         lblProductos = new javax.swing.JLabel();
         txtStock = new javax.swing.JTextField();
 
+        setClosable(true);
+
         tablaStockBodega.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},

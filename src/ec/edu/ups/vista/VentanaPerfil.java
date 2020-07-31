@@ -41,6 +41,8 @@ public class VentanaPerfil extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnEliminarUs = new javax.swing.JButton();
 
+        setClosable(true);
+
         lblPerfil.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblPerfil.setText("Perfil");
 

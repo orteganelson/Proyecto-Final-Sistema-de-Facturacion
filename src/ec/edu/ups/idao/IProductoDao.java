@@ -24,6 +24,8 @@ public interface IProductoDao {
     public void delete(Producto producto);
 
     public int obtenerUltimoCodigo();
+    
+    public int obtenerStockBodega(int codigo);
 
     public void disminuirStock(Detalle detalle);
 

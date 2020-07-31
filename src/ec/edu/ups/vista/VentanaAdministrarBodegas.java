@@ -5,19 +5,28 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorBodega;
+import ec.edu.ups.modelo.Bodega;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Anahi
  */
 public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaAdministrarBodegas
-     */
-    public VentanaAdministrarBodegas() {
+   private ControladorBodega controladorBodega;
+   
+    public VentanaAdministrarBodegas(ControladorBodega controladorBodega) {
+        this.controladorBodega=controladorBodega;
         initComponents();
     }
-
+    
+    public void cargarSiguienteCodigo() {
+        txtCodigoB.setText(String.valueOf(controladorBodega.obtenerSiguienteCodigo()+1));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +51,27 @@ public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
         btnCancelarB = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaBodega = new javax.swing.JTable();
+        btnLimpiar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+
+        setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         lblBodega.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblBodega.setText("Bodega:");
@@ -58,74 +88,130 @@ public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
         lblDireccionB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblDireccionB.setText("Dirección:");
 
+        txtCodigoB.setEditable(false);
+        txtCodigoB.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCodigoB.setText("0");
+
         btnAgregarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnAgregarB.setText("Agregar");
+        btnAgregarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarBActionPerformed(evt);
+            }
+        });
 
         btnEliminarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnEliminarB.setText("Eliminar");
+        btnEliminarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarBActionPerformed(evt);
+            }
+        });
 
         btnEditarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnEditarB.setText("Editar");
+        btnEditarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarBActionPerformed(evt);
+            }
+        });
 
         btnCancelarB.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         btnCancelarB.setText("Cancelar");
+        btnCancelarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarBActionPerformed(evt);
+            }
+        });
 
         tablaBodega.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         tablaBodega.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Ciudad", "Direccion"
+                "Código", "Nombre", "Ciudad", "Direccion", "Stock"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaBodega.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaBodegaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaBodega);
+
+        btnLimpiar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCodigoB)
+                    .addComponent(lblNombreB)
+                    .addComponent(lblCiudadB)
+                    .addComponent(lblDireccionB))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCodigoB, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNombreB, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCiudadB)
+                    .addComponent(txtDireccionB, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpiar)
+                .addGap(131, 131, 131))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBodega)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCodigoB)
-                                    .addComponent(lblNombreB)
-                                    .addComponent(lblCiudadB)
-                                    .addComponent(lblDireccionB))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCodigoB, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtNombreB, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtCiudadB)
-                                    .addComponent(txtDireccionB, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)))))
+                        .addComponent(lblBodega))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(103, 103, 103)
+                        .addComponent(btnActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAgregarB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminarB)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditarB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelarB))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnCancelarB)))
+                .addContainerGap(152, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBodega)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCodigoB)
@@ -136,33 +222,149 @@ public class VentanaAdministrarBodegas extends javax.swing.JInternalFrame {
                         .addGap(17, 17, 17)
                         .addComponent(lblDireccionB))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCodigoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCodigoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLimpiar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCiudadB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDireccionB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarB)
                     .addComponent(btnEliminarB)
                     .addComponent(btnEditarB)
-                    .addComponent(btnCancelarB))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btnCancelarB)
+                    .addComponent(btnActualizar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnCancelarBActionPerformed
 
+    private void tablaBodegaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBodegaMouseClicked
+       int index = tablaBodega.getSelectedRow();
+
+        int  codigo =  (int) tablaBodega.getValueAt(index, 0);
+        String nombre =""+ tablaBodega.getValueAt(index, 1);
+        String ciudad =""+ tablaBodega.getValueAt(index, 2);
+        String Direccion =""+ tablaBodega.getValueAt(index, 3);
+
+        txtCodigoB.setText(String.valueOf(codigo+""));
+        txtNombreB.setText(String.valueOf(nombre.trim()));
+        txtCiudadB.setText(String.valueOf(ciudad.trim()));
+        txtDireccionB.setText(String.valueOf(Direccion.trim()));
+     
+    }//GEN-LAST:event_tablaBodegaMouseClicked
+
+    private void btnAgregarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBActionPerformed
+        if(txtCodigoB.getText().isEmpty()||txtNombreB.getText().isEmpty()
+                ||txtCiudadB.getText().isEmpty()||txtDireccionB.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Campos Vacios");
+        }else {
+            controladorBodega.crearBodega(Integer.parseInt(txtCodigoB.getText().trim()),txtNombreB.getText().trim()
+                    ,txtDireccionB.getText().trim(),txtCiudadB.getText().trim() );
+            JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
+            Limpiar();
+             cargarBodegasTbl();
+            cargarSiguienteCodigo();
+        }
+    }//GEN-LAST:event_btnAgregarBActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        if(txtNombreB.getText().isEmpty()){
+        }else{ 
+            controladorBodega.actualizarStock(txtNombreB.getText().trim());
+        }
+       cargarBodegasTbl();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+       cargarSiguienteCodigo();
+        cargarBodegasTbl();
+        if(txtNombreB.getText().isEmpty()){
+        }else{ 
+            controladorBodega.actualizarStock(txtNombreB.getText().trim());
+        }
+       
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       if(txtNombreB.getText().isEmpty()){
+        }else{ 
+            controladorBodega.actualizarStock(txtNombreB.getText().trim());
+        }
+        Limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEditarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarBActionPerformed
+        if(txtCodigoB.getText().isEmpty()||txtNombreB.getText().isEmpty()
+                ||txtCiudadB.getText().isEmpty()||txtDireccionB.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Campos Vacios");
+        }else {
+            controladorBodega.actualizarBodega(Integer.parseInt(txtCodigoB.getText().trim()),txtNombreB.getText().trim()
+                    ,txtDireccionB.getText().trim(),txtCiudadB.getText().trim() );
+            JOptionPane.showMessageDialog(this, "Cliente actualizado exitosamente");
+            Limpiar();
+             cargarSiguienteCodigo();
+             cargarBodegasTbl();
+        }
+    }//GEN-LAST:event_btnEditarBActionPerformed
+
+    private void btnEliminarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBActionPerformed
+         if(txtCodigoB.getText().isEmpty()||txtNombreB.getText().isEmpty()
+                ||txtCiudadB.getText().isEmpty()||txtDireccionB.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Campos Vacios");
+        }else {
+              int opcion= JOptionPane.showConfirmDialog(this,"¿Esta seguro de eliminar esa Bodega");
+             if(opcion==JOptionPane.YES_OPTION){
+             controladorBodega.eliminarBodega(Integer.parseInt(txtCodigoB.getText().trim()));
+              cargarSiguienteCodigo();
+              cargarBodegasTbl();
+             }
+         }
+    }//GEN-LAST:event_btnEliminarBActionPerformed
+    
+    public void Limpiar(){
+    cargarSiguienteCodigo();
+     txtNombreB.setText("");
+     txtCiudadB.setText("");
+     txtDireccionB.setText("");
+    }
+    
+      public void cargarBodegasTbl() {
+         DefaultTableModel modelo = (DefaultTableModel) tablaBodega.getModel();
+    modelo.setRowCount(0);
+    for(Bodega bodega: controladorBodega.listarBodegas()){
+     Object[] rowData ={bodega.getCodigo(),bodega.getNombre().trim(),bodega.getCiudad().trim(),bodega.getDireccion().trim(),bodega.getStock()};
+     modelo.addRow(rowData);
+     tablaBodega.setModel(modelo);
+    }
+    if(txtNombreB.getText().isEmpty()){
+        }else{ 
+            controladorBodega.actualizarStock(txtNombreB.getText().trim());
+        }
+       
+      }
+      
+       public void limpiarTabla(){
+         DefaultTableModel modelo = (DefaultTableModel) tablaBodega.getModel();
+    modelo.setRowCount(0);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregarB;
     private javax.swing.JButton btnCancelarB;
     private javax.swing.JButton btnEditarB;
     private javax.swing.JButton btnEliminarB;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBodega;
     private javax.swing.JLabel lblCiudadB;

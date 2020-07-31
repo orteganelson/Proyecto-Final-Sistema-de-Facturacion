@@ -49,6 +49,7 @@ public class BodegaDao implements IBodegaDao {
             archivo.writeUTF(bodega.getNombre());
             archivo.writeUTF(bodega.getDireccion());
             archivo.writeUTF(bodega.getCiudad());
+            archivo.writeInt (bodega.getStock());
 
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura create: BodegaDao");
@@ -92,6 +93,7 @@ public class BodegaDao implements IBodegaDao {
                     archivo.writeUTF(bodega.getNombre());
                     archivo.writeUTF(bodega.getDireccion());
                     archivo.writeUTF(bodega.getCiudad());
+                    archivo.writeInt (bodega.getStock());
 
                     break;
                 }
@@ -115,7 +117,7 @@ public class BodegaDao implements IBodegaDao {
                     archivo.writeInt(0);
                     archivo.writeUTF(llenarEspacios(25));
                     archivo.writeUTF(llenarEspacios(60));
-                    archivo.writeUTF(llenarEspacios(60));
+                    archivo.writeUTF(llenarEspacios(25));
                     archivo.writeInt(0);
                     break;
                 }
@@ -142,10 +144,11 @@ public class BodegaDao implements IBodegaDao {
                 archivo.seek(salto);
 
                 int valor = archivo.readInt();
-                if (valor > 0) {
+                if (valor != 0) {
 
                     Bodega bodega = new Bodega(valor, archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim());
+                    bodega.setStock(archivo.readInt());
                     listaBodegas.add(bodega);
 
                 }
@@ -156,22 +159,87 @@ public class BodegaDao implements IBodegaDao {
         } catch (IOException ex) {
             System.out.println("error listarTodosProductos : ProductoDao");
         }
-        return listaBodegas;
+      return listaBodegas;
 
     }
 
     @Override
-    public int obtenerUltimoCodigo() {
+     public int obtenerUltimoCodigo() {
+ 
+    boolean f=false;
         try {
-            if (archivo.length() >= tamanioRegistro) {
-                archivo.seek(archivo.length() - tamanioRegistro);
-                codigo = archivo.readInt();
+             long pos= archivo.length() - tamanioRegistro;
+             if (archivo.length()==tamanioRegistro){
+             archivo.seek(pos);
+             codigo=archivo.readInt();
+             }else if (archivo.length() > tamanioRegistro) {
+              
+              
+            while(f==false){
+                archivo.seek(pos);
+               
+               if (archivo.readInt()!=0){
+                   break;
+               }
+                pos-=tamanioRegistro;
+            }
+                archivo.seek(pos);
+                codigo=archivo.readInt();
             }
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura");
         }
 
         return codigo;
+    
+    }
+    
+    
+
+    @Override
+    public Bodega buscarPorNombre(String nombre) {
+        
+        int salto = 4;
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String nomA = archivo.readUTF().trim();
+                if (nomA.equals(nombre)) {
+                    archivo.seek(salto-4);
+                    Bodega bodega = new Bodega(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                            archivo.readUTF().trim());
+
+                    return bodega;
+                }
+
+                salto += tamanioRegistro;
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Error de lectura y escritura read:BodegaDao");
+        }
+        return null;
+      
+    }
+
+    @Override
+    public void updateStock(int cantidad, String nombre) {
+     int salto=4;
+        try {
+             
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String nombreBodega =archivo.readUTF().trim();
+                if (nombreBodega.equals(nombre)) {
+                     archivo.seek((salto-4)+120);
+                    archivo.writeInt(cantidad);
+                    break;
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura o escritura UpdateStock :BodegaDao");
+        }
     }
 
 }

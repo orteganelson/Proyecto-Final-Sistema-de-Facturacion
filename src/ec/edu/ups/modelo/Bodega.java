@@ -5,8 +5,6 @@
  */
 package ec.edu.ups.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -18,6 +16,7 @@ public class Bodega {
     private String nombre;
     private String direccion;
     private String ciudad;
+    private int stock;
     
 
  
@@ -31,9 +30,19 @@ public class Bodega {
         this.setNombre(nombre);
         this.setDireccion(direccion);
         this.setCiudad(ciudad);
+
+    
         
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
     public int getCodigo() {
         return codigo;
     }

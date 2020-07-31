@@ -21,7 +21,11 @@ public interface IBodegaDao {
     public void update(Bodega bodega);
 
     public void delete(Bodega bodega);
-
+    
+    public Bodega buscarPorNombre (String nombre);
+     
+    public void updateStock(int cantidad,String nombre);
+    
     public int obtenerUltimoCodigo();
 
     public List<Bodega> listarTodasBodegas();

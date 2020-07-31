@@ -53,6 +53,8 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
         lblCedula = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
 
+        setClosable(true);
+
         lblNombreUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblNombreUsuario.setText("NOMBRE:");
 
@@ -175,7 +177,7 @@ public class VentanaRegistroUsuarios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarUsuarioActionPerformed
-        this.setVisible(false);
+        this.dispose();
         limpiar();
     }//GEN-LAST:event_btnCancelarUsuarioActionPerformed
 

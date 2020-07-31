@@ -37,6 +37,8 @@ public class VentanaInventarioBodega extends javax.swing.JInternalFrame {
         txtStock = new javax.swing.JTextField();
         lblProductos = new javax.swing.JLabel();
 
+        setClosable(true);
+
         lblStockBodega.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblStockBodega.setText("Stock Bodega");
 

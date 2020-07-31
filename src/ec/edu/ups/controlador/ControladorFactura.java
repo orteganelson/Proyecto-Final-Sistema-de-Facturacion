@@ -35,6 +35,20 @@ public class ControladorFactura {
         Detalle detalle =  detalleDao.buscarPorFactura(factura.getNumero());
         productoDao.aumentarStock(detalle);
     }
+    public void agregarDetalle(int codigo, int cantidad, double total, String numeroFactura){
+        Detalle detalle = new Detalle(codigo,cantidad,total);
+        Factura factura = facturaDao.buscarPorNumero(numeroFactura);
+        detalle.setFactura(factura);
+        detalleDao.create(detalle);
+    
+    }
+      public void actualizarDetalle(int codigo, int cantidad, double total, String numeroFactura){
+        Detalle detalle = new Detalle(codigo,cantidad,total);
+        Factura factura = facturaDao.buscarPorNumero(numeroFactura);
+        detalle.setFactura(factura);
+        detalleDao.Update(detalle);
+    
+    }
       public int obtenerSiguienteCodigo() {
         int codigo = facturaDao.obtenerUltimoCodigo();
 

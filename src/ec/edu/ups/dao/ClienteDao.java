@@ -7,7 +7,6 @@ package ec.edu.ups.dao;
 
 import ec.edu.ups.idao.IClienteDao;
 import ec.edu.ups.modelo.Cliente;
-import ec.edu.ups.modelo.Factura;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -25,19 +24,19 @@ public class ClienteDao implements IClienteDao {
      * String apellido; 25 caracteres + 2 bytes extras private String correo; 50
      * caracterres + 2 bytes extras private String direccion; 60 caracteres + 2
      * bytes extras private String telefono; 25 caracteres + 2 bytes extras
-     * private int codigoFactura ; 4 bytes 199 bytes mas 12 bytes por String =
-     * 211 bytes por registro
+     * private int codigoFactura ; 4 bytes 195 bytes mas 12 bytes por String =
+     * 207 bytes por registro
      *
      * @param cliente
      */
     private int tamanioRegistro;
     private RandomAccessFile archivo;
 
-    private FacturaDao facturaDao;
+ 
 
     public ClienteDao() {
-        facturaDao = new FacturaDao();
-        this.tamanioRegistro = 211;
+       
+        this.tamanioRegistro = 207;
         try {
             archivo = new RandomAccessFile("datos/clientes.dat", "rw");
         } catch (IOException ex) {
@@ -56,7 +55,6 @@ public class ClienteDao implements IClienteDao {
             archivo.writeUTF(cliente.getCorreo());
             archivo.writeUTF(cliente.getDireccion());
             archivo.writeUTF(cliente.getTelefono());
-            archivo.writeInt(cliente.getFactura().getCodigo());
 
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura create");
@@ -74,8 +72,7 @@ public class ClienteDao implements IClienteDao {
                     // retornar el Usuario
                     Cliente cliente = new Cliente(cedula.trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
-                    Factura factura = facturaDao.read(archivo.readInt());
-                    cliente.setFactura(factura);
+         
                     return cliente;
                 }
 
@@ -122,13 +119,14 @@ public class ClienteDao implements IClienteDao {
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF();
                 if (cedula.trim().equals(cedulaArchivo.trim())) {
+                    archivo.seek(salto);
                     archivo.writeUTF(llenarEspacios(10));
                     archivo.writeUTF(llenarEspacios(25));
                     archivo.writeUTF(llenarEspacios(25));
                     archivo.writeUTF(llenarEspacios(50));
                     archivo.writeUTF(llenarEspacios(60));
                     archivo.writeUTF(llenarEspacios(25));
-                    archivo.writeInt(0);
+    
                     break;
                 }
                 salto += tamanioRegistro;
@@ -154,12 +152,11 @@ public class ClienteDao implements IClienteDao {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
 
-                int valor = archivo.readInt();
-                if (valor > 0) {
-                    Cliente cliente = new Cliente(archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                String  cedulaA = archivo.readUTF().trim();
+                if ("".equals(cedulaA)) {
+                } else {
+                    Cliente cliente = new Cliente(cedulaA, archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
-                    Factura factura = facturaDao.read(archivo.readInt());
-                    cliente.setFactura(factura);
                     listaClientes.add(cliente);
                 }
 

@@ -16,6 +16,7 @@ import ec.edu.ups.idao.IProductoDao;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
+import java.util.List;
 
 /**
  *
@@ -74,6 +75,9 @@ public class ControladorCliente {
     Detalle detalle = detalleDao.buscarPorFactura(factura.getNumero());
     productoDao.disminuirStock(detalle);
     }
+    public List<Cliente> listarClientes(){
+        return clienteDao.listarTodosClientes();
     
+    }
    
 }

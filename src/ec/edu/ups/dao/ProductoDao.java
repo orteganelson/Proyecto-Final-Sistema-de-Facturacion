@@ -172,16 +172,33 @@ public class ProductoDao implements IProductoDao {
 
     @Override
     public int obtenerUltimoCodigo() {
+ 
+    boolean f=false;
         try {
-            if (archivo.length() >= tamanioRegistro) {
-                archivo.seek(archivo.length() - tamanioRegistro);
-                codigo = archivo.readInt();
+             long pos= archivo.length() - tamanioRegistro;
+             if (archivo.length()==tamanioRegistro){
+             archivo.seek(pos);
+             codigo=archivo.readInt();
+             }else if (archivo.length() > tamanioRegistro) {
+              
+              
+            while(f==false){
+                archivo.seek(pos);
+               
+               if (archivo.readInt()!=0){
+                   break;
+               }
+                pos-=tamanioRegistro;
+            }
+                archivo.seek(pos);
+                codigo=archivo.readInt();
             }
         } catch (IOException ex) {
-            System.out.println("Error de lectura y escritura:ProductoDao");
+            System.out.println("Error de lectura y escritura");
         }
 
         return codigo;
+    
     }
 
     @Override
@@ -257,5 +274,28 @@ public class ProductoDao implements IProductoDao {
         } catch (IOException ex) {
             System.out.println("Error de lectura o escritura(Update: ProductoDao)");
         }
+    }
+
+    @Override
+    public int obtenerStockBodega(int codigo) {
+        int stock=0;
+         Bodega bodega=bodegaDao.read(codigo);
+         int codi=bodega.getCodigo();
+        int salto = 125;
+
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                int codigoA = archivo.readInt();
+                if (codigoA == codi) {
+                    stock++;
+                }
+                salto += tamanioRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura o escritura(obtenerStockBodega: ProductoDao)");
+        }
+        return stock;
+      
     }
 }

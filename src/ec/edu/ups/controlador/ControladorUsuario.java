@@ -8,6 +8,7 @@ package ec.edu.ups.controlador;
 import ec.edu.ups.dao.UsuarioDao;
 import ec.edu.ups.idao.IUsuarioDao;
 import ec.edu.ups.modelo.Usuario;
+import java.util.List;
 
 /**
  * Clase ControladorUsuario.
@@ -53,5 +54,18 @@ public class ControladorUsuario {
 
         return usuario;
     }
+        public boolean validarUsuario(String correo, String pass) {
+        usuario = UsuarioDao.iniciarSesion(correo, pass);
+        if (usuario != null) {
+            return true;
+        } else {
+            return false;
+        }
+      
 
+    }
+      public List<Usuario> listarUsuarios(){
+        return UsuarioDao.listarTodosUsuarios();
+        
+        }
 }
